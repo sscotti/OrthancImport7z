@@ -1,0 +1,6 @@
+watchdog
+requests
+python-dotenv
+py7zr
+aiohttp
+aiofiles

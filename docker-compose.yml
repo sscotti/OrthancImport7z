@@ -1,0 +1,35 @@
+services:
+  orthanc:
+    image: orthancteam/orthanc:latest-full
+    ports:
+      - "8042:8042"
+      - "4242:4242"
+    volumes:
+      - orthanc_data:/var/lib/orthanc/db
+      - ./orthanc.json:/etc/orthanc/orthanc.json
+    environment:
+      - AUTHORIZATION_PLUGIN_ENABLED=false
+      - CONNECTIVITY_CHECKS_PLUGIN_ENABLED=true
+      - DICOM_WEB_PLUGIN_ENABLED=true
+      - GDCM_PLUGIN_ENABLED=true
+      - STONE_WEB_VIEWER_PLUGIN_ENABLED=true
+      - PYTHON_PLUGIN_ENABLED=true
+      - TRANSFERS_PLUGIN_ENABLED=true
+
+  python-processor:
+    build: .
+    volumes:
+      - ./ToProcess:/ToProcess
+      - ./Processed:/Processed
+      - ./Failed:/Failed
+    environment:
+      - ORTHANC_ENDPOINT=http://orthanc:8042/instances
+      - TOPROCESS_FOLDER=/ToProcess
+      - PROCESSED_FOLDER=/Processed
+      - FAILED_FOLDER=/Failed
+      - MAX_CONCURRENT_UPLOADS=10
+    depends_on:
+      - orthanc
+volumes:
+
+  orthanc_data:

@@ -1,0 +1,11 @@
+{
+  "Name": "Orthanc",
+  "HttpServerEnabled": true,
+  "HttpServerPort": 8042,
+  "AuthenticationEnabled": false,
+  "RegisteredUsers": {},
+  "DicomModalities": {},
+  "RemoteAccessAllowed": true,
+  "StorageCompression": true,
+  "LogLevel": "Info"
+}
