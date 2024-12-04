@@ -22,6 +22,7 @@ services:
       - ./ToProcess:/ToProcess
       - ./Processed:/Processed
       - ./Failed:/Failed
+      - ./monitor.py:/app/monitor.py
     environment:
       - ORTHANC_ENDPOINT=http://orthanc:8042/instances
       - TOPROCESS_FOLDER=/ToProcess

@@ -6,6 +6,5 @@ RUN mkdir -p /ToProcess /Processed /Failed
 WORKDIR /app
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
-COPY . .
 
-CMD ["python", "monitor.py"]
+CMD ["python", "/app/monitor.py"]
