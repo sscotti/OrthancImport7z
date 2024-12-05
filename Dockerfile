@@ -1,6 +1,11 @@
 FROM python:3.10-slim
 
-RUN apt-get update && apt-get install -y p7zip-full && apt-get clean
+# Install system dependencies
+RUN apt-get update && \
+    apt-get install -y p7zip-full libmagic1 && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+    
 # Create application directories
 RUN mkdir -p /ToProcess /Processed /Failed
 WORKDIR /app

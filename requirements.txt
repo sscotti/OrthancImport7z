@@ -4,3 +4,4 @@ python-dotenv
 py7zr
 aiohttp
 aiofiles
+python-magic
